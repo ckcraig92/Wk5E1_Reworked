@@ -9,7 +9,7 @@ namespace Wk5E1_Reworked
     internal class Program
     {
         //creating list for grades
-        static List<string> grades = new List<string>();
+        static List<int> grades = new List<int>();
         static void Main(string[] args)
         {
             int choice;
@@ -28,7 +28,7 @@ namespace Wk5E1_Reworked
                 //convert choice to integer
                 choice = Convert.ToInt32(Console.ReadLine());
 
-                //switch
+                //switch for menu options
                 switch (choice)
                 {
                     case 1:
@@ -41,7 +41,7 @@ namespace Wk5E1_Reworked
                         DisplayGrades();
                         break;
                     case 4:
-                        Calculateverage();
+                        CalculateAverage();
                         break;
                     case 5:
                         HighestandLowest();
@@ -54,21 +54,26 @@ namespace Wk5E1_Reworked
                         break;
 
                 }
-                //create method
-                static void AddGrade();
-                {
-                    Console.WriteLine("Enter a grade 0-100:");
-                    int grade = Convert.ToInt32(Console.ReadLine());
+            }
+            while (choice != 6); //loop until user exits
+        }
 
-                    if (grade >= 0 && grade <= 100)
+                //create method
+                static void AddGrade()
+                {
+           
+                    Console.WriteLine("Enter a grade 0-100:");//user input
+                    int grade = Convert.ToInt32(Console.ReadLine()); //varaible to hold grade
+
+                    if (grade >= 0 && grade <= 100) //process
                     {
                         grades.Add(grade);
-                        Console.WriteLine("grade added.");
+                        Console.WriteLine("grade added."); //output
 
                     }
                     else
                     {
-                        Console.WriteLine("Invalid grade, Enter 0-100.");
+                        Console.WriteLine("Invalid grade, Enter 0-100."); //output
 
                     }
 
@@ -77,68 +82,78 @@ namespace Wk5E1_Reworked
                 //create method
                 static void RemoveGrade()
                 {
-                    Console.WriteLine("Enter a grade to remove: ");
-                    int grade = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter a grade to remove: "); //input
+                    int grade = Convert.ToInt32(Console.ReadLine()); //variabel to hold input
 
-                    if (grade.Remove(grade))
+                    //process
+                    if (grades.Remove(grade))
                     {
                         Console.WriteLine("grade removed.");
                     }
                 }
-                static void DisplayGrades()
+                static void DisplayGrades() //method
                 {
+                    //process
                     if (grades.Count == 0)
                     {
-                        Console.WriteLine("no grades to display.");
+                        Console.WriteLine("no grades to display.");//output
                         return;
                     }
-                    Console.WriteLine("grades: ");
-                    foreach (int grade in grades)
+                    Console.WriteLine("grades: ") //output
+                    foreach (int grade in grades) //loop through each grade
                     {
-                        Console.WriteLine(grade);
+                        Console.WriteLine(grade); //output
                     }
                 }
                 //method
-                static void Calculateaverage()
+                static void CalculateAverage()
                 {
+                    //process
                     if (grades.Count == 0)
                     {
-                        Console.WriteLine("no grades to average");
-                        return
-}
+                        Console.WriteLine("no grades to average");//output
+                        return;
+                    }
                     double average = 0;
                     foreach (int grade in grades)
                     {
                         average += grade;
                     }
                     average /= grades.Count;
-                    Console.WriteLine("Averages grade" + average);
+                    Console.WriteLine("Averages grade: " + average); //output
                 }
                 //method
-                static void HighestandLowest;
-                    {
+                static void HighestandLowest()
+                {
                     if (grades.Count == 0)
                     {
                         Console.WriteLine("no grades");
                         return;
                     }
-                    int max = int.MaxValue;
-                    int min = int.MinValue;
+                    //set to smallest & largest
+                    int max = int.MinValue;
+                    int min = int.MaxValue;
 
-                    foreach (int grade in grades)
+                    foreach (int grade in grades)//loop through each grade
                     {
-                        if (grade > max) max = grade;
-                        if (grade < min) min = grade;
+                //process
+                        if (grade > max) max = grade; //if current grade is greater than current max, update max
+                        if (grade < min) min = grade; //if current grade is less than current min, update min
 
 
                     }
-                    Console.WriteLine("highest grade : " + max + "lowest grade: " + min);
-
+                    //output
+                    Console.WriteLine("highest grade:  " + max + "   lowest grade:  " + min);
                 }
 
-
             }
-}
-    }
-}
+
+
+        }
+    
+
+
+
+
+
 
